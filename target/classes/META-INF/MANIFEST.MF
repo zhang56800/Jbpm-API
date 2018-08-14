@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: jBPM :: Sample Maven Project
+Implementation-Version: 1.0.0-SNAPSHOT
+Built-By: zhang56
+Implementation-Vendor-Id: com.citi.ci
+Build-Jdk: 1.8.0_181
+Implementation-URL: http://projects.spring.io/spring-boot/jBPM-APIFlow
+ /
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
