@@ -4,8 +4,11 @@
 package com.citi.ci.userTaskAPI.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.jbpm.bpmn2.handler.ServiceTaskHandler;
 import org.jbpm.services.task.impl.model.UserImpl;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.process.ProcessInstance;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.citi.ci.userTaskAPI.JbpmApplication;
 import com.citi.ci.userTaskAPI.model.TaskInfo;
 import com.citi.ci.userTaskAPI.model.TaskResponse;
+import com.citi.ci.userTaskAPI.util.Constant;
 
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
@@ -50,8 +54,10 @@ public class ProcessController {
 	@ResponseBody
 	public String  caseStart() {
 		KieSession ksession=JbpmApplication.getKsession();
-		
-		ProcessInstance processInstance=ksession.startProcess("com.citi.ci.userTaskFlow");
+		ksession.getWorkItemManager().registerWorkItemHandler("Service Task", new ServiceTaskHandler());
+		Map<String, Object> param =  new HashMap<>();
+		param.put("var1", Constant.NESS);
+		ProcessInstance processInstance=ksession.startProcess("com.citi.ci.userTaskFlow",param);
 //		String PName=processInstance.getProcessName();
 		Long Id=processInstance.getId();
 //		String PId = processInstance.getProcessId(); process ID
